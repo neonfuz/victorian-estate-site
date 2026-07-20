@@ -402,5 +402,112 @@
         </div>
     </footer>
 
+    <!-- Image Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/90 hidden flex items-center justify-center opacity-0 transition-opacity duration-300" onclick="closeLightboxBackground(event)">
+        <!-- Close Button -->
+        <button onclick="closeLightboxNow(event)" class="absolute top-4 right-4 md:top-6 md:right-6 text-white/80 hover:text-white text-4xl md:text-5xl font-light z-10 transition-colors" aria-label="Close">&times;</button>
+        
+        <!-- Prev Arrow -->
+        <button onclick="navigateLightbox(-1, event)" class="absolute left-2 md:left-6 text-white/60 hover:text-white text-4xl md:text-6xl font-light z-10 transition-colors select-none" aria-label="Previous">&#8249;</button>
+        
+        <!-- Next Arrow -->
+        <button onclick="navigateLightbox(1, event)" class="absolute right-2 md:right-6 text-white/60 hover:text-white text-4xl md:text-6xl font-light z-10 transition-colors select-none" aria-label="Next">&#8250;</button>
+        
+        <!-- Image Container -->
+        <div class="max-w-[90vw] max-h-[90vh] px-8 md:px-16" onclick="event.stopPropagation()">
+            <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[85vh] object-contain rounded shadow-2xl">
+        </div>
+    </div>
+
+    <script>
+        let lightboxImages = [];
+        let currentIndex = 0;
+
+        function initLightbox() {
+            lightboxImages = Array.from(document.querySelectorAll('img:not(#lightbox-img)'));
+            
+            lightboxImages.forEach((img, index) => {
+                img.classList.add('cursor-pointer');
+                img.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openLightbox(index);
+                });
+            });
+        }
+
+        function openLightbox(index) {
+            currentIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightboxImg.src = lightboxImages[currentIndex].src;
+            lightboxImg.alt = lightboxImages[currentIndex].alt || '';
+            
+            lightbox.classList.remove('hidden');
+            // Force a reflow so the browser registers the opacity-0 state
+            // before we remove it, triggering the CSS transition
+            void lightbox.offsetWidth;
+            lightbox.classList.remove('opacity-0');
+            
+            document.body.style.overflow = 'hidden';
+        }
+
+        function performClose() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('opacity-0');
+            
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                document.getElementById('lightbox-img').src = '';
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        function closeLightboxBackground(event) {
+            // Only close when clicking the dark background itself, not children
+            if (event.target !== event.currentTarget) return;
+            performClose();
+        }
+
+        function closeLightboxNow(event) {
+            event.stopPropagation(); // Don't bubble to the background handler
+            performClose();
+        }
+
+        function navigateLightbox(direction, event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            
+            currentIndex += direction;
+            
+            if (currentIndex < 0) {
+                currentIndex = lightboxImages.length - 1;
+            } else if (currentIndex >= lightboxImages.length) {
+                currentIndex = 0;
+            }
+            
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = lightboxImages[currentIndex].src;
+            lightboxImg.alt = lightboxImages[currentIndex].alt || '';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('hidden')) return;
+            
+            if (e.key === 'Escape') {
+                performClose();
+            } else if (e.key === 'ArrowLeft') {
+                navigateLightbox(-1);
+            } else if (e.key === 'ArrowRight') {
+                navigateLightbox(1);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', initLightbox);
+    </script>
+
 </body>
 </html>
