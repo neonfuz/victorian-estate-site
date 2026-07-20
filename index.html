@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victorian Masterpiece | For Sale</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (Play CDN for config support) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+
+    <!-- Custom Tailwind Configuration & Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'victorian-wood': '#2e1f1a',
+                        'victorian-cream': '#f3ece4',
+                        'victorian-mauve': '#a3544b',
+                        'victorian-green': '#2a3d2e',
+                        'victorian-gold': '#d4b878',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Raleway"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(42, 61, 46, 0.6), rgba(42, 61, 46, 0.6)), 
+                              url('assets/house%20exterior/front%20view.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .fireplace-bg {
+            background-image: url('assets/living%20room/fireplace.jpg');
+            background-size: cover;
+        }
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-victorian-cream text-victorian-wood font-sans antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-victorian-green text-victorian-cream shadow-lg z-50 py-4 px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-serif italic">The Victorian Estate</a>
+            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-wider">
+                <a href="#exterior" class="hover:text-victorian-gold transition">Exterior</a>
+                <a href="#interiors" class="hover:text-victorian-gold transition">Interiors</a>
+                <a href="#kitchen" class="hover:text-victorian-gold transition">Kitchen</a>
+                <a href="#baths" class="hover:text-victorian-gold transition">Baths</a>
+                <a href="#contact" class="px-4 py-1 border border-victorian-gold hover:bg-victorian-gold hover:text-victorian-wood transition rounded-full">Inquire</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero-bg min-h-screen flex items-center justify-center text-center text-white px-6">
+        <div class="max-w-4xl space-y-6">
+            <h1 class="text-5xl md:text-7xl font-serif font-bold leading-tight drop-shadow-lg">
+                A Victorian Masterpiece
+            </h1>
+            <p class="text-xl md:text-2xl font-light max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+                Meticulously restored historic charm seamlessly blended with modern luxury. 
+                A rare opportunity to own a piece of architectural history.
+            </p>
+            <div class="pt-8 flex flex-col md:flex-row justify-center gap-4">
+                <a href="#exterior" class="px-8 py-3 bg-victorian-gold text-victorian-wood font-semibold rounded-full hover:bg-victorian-mauve hover:text-white transition duration-300">Explore the Home</a>
+                <a href="#contact" class="px-8 py-3 bg-transparent border-2 border-white rounded-full hover:bg-white hover:text-victorian-green transition duration-300">Request a Tour</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Exterior Section -->
+    <section id="exterior" class="py-20 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-victorian-mauve font-semibold tracking-widest text-sm uppercase">The Approach</span>
+                <h2 class="text-4xl md:text-5xl font-serif mt-2">Grand Curb Appeal</h2>
+                <div class="w-16 h-1 bg-victorian-gold mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                <div class="relative overflow-hidden rounded-lg shadow-xl group h-[400px] md:h-[500px]">
+                    <img src="assets/house%20exterior/front%20view.jpg" alt="Front View of Victorian House" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-6 text-white">
+                        <h3 class="text-xl font-serif">Front View</h3>
+                        <p class="text-sm font-light text-gray-200">Historic Victorian architecture with original details</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="relative overflow-hidden rounded-lg shadow-md group h-[240px]">
+                        <img src="assets/house%20exterior/turret%201.jpg" alt="Iconic Turret" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">Iconic Turret</div>
+                    </div>
+                    <div class="relative overflow-hidden rounded-lg shadow-md group h-[240px]">
+                        <img src="assets/house%20exterior/front%20yard%20from%20sidewalk.jpg" alt="Front Yard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">Front Yard</div>
+                    </div>
+                    <div class="col-span-2 relative overflow-hidden rounded-lg shadow-md group h-[240px]">
+                        <img src="assets/porch/porch.jpg" alt="Front Porch" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute bottom-0 w-full bg-gradient-to-t from-black/70 to-transparent p-4 text-white">
+                            <h3 class="text-lg font-serif">Expansive Covered Porch</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Exterior Views -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                <div class="relative overflow-hidden rounded-lg shadow-md group h-[240px]">
+                    <img src="assets/house%20exterior/front%20stairs.jpg" alt="Front Stairs" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">Grand Front Stairs</div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg shadow-md group h-[240px]">
+                    <img src="assets/porch/porch%202.jpg" alt="Porch Detail" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">Porch Details</div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg shadow-md group h-[240px]">
+                    <img src="assets/yard/yard%201.jpg" alt="Yard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">Beautiful Yard</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interiors Section -->
+    <section id="interiors" class="py-20 px-6 bg-victorian-cream">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-victorian-mauve font-semibold tracking-widest text-sm uppercase">Craftsmanship</span>
+                <h2 class="text-4xl md:text-5xl font-serif mt-2">Historic Living Spaces</h2>
+                <div class="w-16 h-1 bg-victorian-gold mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden transform hover:-translate-y-2 transition duration-300">
+                    <div class="h-64 overflow-hidden">
+                        <img src="assets/living%20room/living%20room.jpg" alt="Living Room" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-serif text-victorian-wood">The Parlor & Mantel</h3>
+                        <p class="text-sm text-gray-600 mt-2">Intricate oak mantels, original tile work, and ornate ceiling medallions.</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden transform hover:-translate-y-2 transition duration-300">
+                    <div class="h-64 overflow-hidden">
+                        <img src="assets/dining%20room/dining%20room%201.jpg" alt="Dining Room" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-serif text-victorian-wood">Formal Dining</h3>
+                        <p class="text-sm text-gray-600 mt-2">Refinished hardwood floors, architectural bay windows, and elegant dining space.</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden transform hover:-translate-y-2 transition duration-300">
+                    <div class="h-64 overflow-hidden">
+                        <img src="assets/living%20room/fireplace.jpg" alt="Fireplace" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-serif text-victorian-wood">Modern Meets History</h3>
+                        <p class="text-sm text-gray-600 mt-2">Expansive built-in oak cabinetry seamlessly holding modern amenities and media.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Staircase -->
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="relative overflow-hidden rounded-lg shadow-xl group h-[400px]">
+                    <img src="assets/staircase/stairs.jpg" alt="Grand Staircase" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-6 text-white">
+                        <h3 class="text-xl font-serif">Grand Staircase</h3>
+                        <p class="text-sm font-light text-gray-200">Ornate hardwood staircase with original banisters</p>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg shadow-xl group h-[400px]">
+                    <img src="assets/staircase/hallway%20staircase.jpg" alt="Hallway Staircase" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-6 text-white">
+                        <h3 class="text-xl font-serif">Hallway & Stairs</h3>
+                        <p class="text-sm font-light text-gray-200">Beautiful hallway leading to upper floors</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kitchen & Baths Section -->
+    <section id="kitchen" class="py-20 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="relative rounded-lg overflow-hidden shadow-2xl h-[600px]">
+                    <img src="assets/kitchen/kitchen.jpg" alt="Renovated Kitchen" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <span class="text-victorian-mauve font-semibold tracking-widest text-sm uppercase">The Culinary Heart</span>
+                    <h2 class="text-4xl font-serif mt-2 mb-6">Modern Chef's Kitchen</h2>
+                    <div class="space-y-4 text-gray-700 leading-relaxed">
+                        <p>Custom solid-oak cabinetry, pristine white beadboard wainscoting, and a deep farmhouse basin sink. The high-end vintage-look stove proves you don't have to sacrifice modern utility for historic charm.</p>
+                        <ul class="list-disc list-inside space-y-2 pl-2 text-victorian-wood">
+                            <li>Massive center island with quartz countertop</li>
+                            <li>Stunning pendant lighting</li>
+                            <li>Ample pantry and storage space</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Kitchen Images -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                <div class="relative overflow-hidden rounded-lg shadow-md group h-[240px]">
+                    <img src="assets/kitchen/hlJjp-f8.jpg" alt="Kitchen Detail 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <div class="relative overflow-hidden rounded-lg shadow-md group h-[240px]">
+                    <img src="assets/kitchen/Eb71VLNC.jpg" alt="Kitchen Detail 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <div class="relative overflow-hidden rounded-lg shadow-md group h-[240px]">
+                    <img src="assets/dining%20room/dining%20room%202.jpg" alt="Dining Area" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+            </div>
+
+            <!-- Baths (Split below) -->
+            <div id="baths" class="mt-24 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-victorian-cream p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center gap-6">
+                    <div class="w-full md:w-1/2 rounded-lg overflow-hidden">
+                        <img src="assets/bathrooms/upstairs%20bathroom.jpg" alt="Upstairs Bathroom" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <h4 class="font-serif text-xl text-victorian-wood">Spa-Like Retreat</h4>
+                        <p class="text-sm text-gray-600 mt-2">Deep soaking tub encased in custom wood paneling, nestled under leaded stained glass windows.</p>
+                    </div>
+                </div>
+                <div class="bg-victorian-cream p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center gap-6">
+                    <div class="w-full md:w-1/2 rounded-lg overflow-hidden">
+                        <img src="assets/bathrooms/downstairs%20bathroom.jpg" alt="Downstairs Bathroom" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <h4 class="font-serif text-xl text-victorian-wood">Restored Vintage</h4>
+                        <p class="text-sm text-gray-600 mt-2">Historically accurate fixtures with brass piping, paired with classic mosaic tile floors.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Bathrooms -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div class="bg-victorian-cream p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center gap-6">
+                    <div class="w-full md:w-1/2 rounded-lg overflow-hidden">
+                        <img src="assets/bathrooms/bedroom%201%20bathroom.jpg" alt="Bedroom 1 Bathroom" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <h4 class="font-serif text-xl text-victorian-wood">En-suite Bathroom</h4>
+                        <p class="text-sm text-gray-600 mt-2">Beautifully appointed bathroom with period details and modern fixtures.</p>
+                    </div>
+                </div>
+                <div class="bg-victorian-cream p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center gap-6">
+                    <div class="w-full md:w-1/2 rounded-lg overflow-hidden">
+                        <img src="assets/bathrooms/bedroom%201%20bathroom%202.jpg" alt="Bedroom 1 Bathroom 2" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <h4 class="font-serif text-xl text-victorian-wood">Guest Bath</h4>
+                        <p class="text-sm text-gray-600 mt-2">Charming guest bathroom with vintage character and modern comfort.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bedrooms & Hallways Section -->
+    <section id="bedrooms" class="py-20 px-6 bg-victorian-cream">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-victorian-mauve font-semibold tracking-widest text-sm uppercase">Private Quarters</span>
+                <h2 class="text-4xl md:text-5xl font-serif mt-2">Bedrooms & Hallways</h2>
+                <div class="w-16 h-1 bg-victorian-gold mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden transform hover:-translate-y-2 transition duration-300">
+                    <div class="h-64 overflow-hidden">
+                        <img src="assets/bedroom/bedroom%202.jpg" alt="Bedroom 2" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-serif text-victorian-wood">Guest Bedroom</h3>
+                        <p class="text-sm text-gray-600 mt-2">Spacious and bright with original hardwood floors and abundant natural light.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden transform hover:-translate-y-2 transition duration-300">
+                    <div class="h-64 overflow-hidden">
+                        <img src="assets/bedroom/bedroom%203.jpg" alt="Bedroom 3" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-serif text-victorian-wood">Third Bedroom</h3>
+                        <p class="text-sm text-gray-600 mt-2">Elegant space with period details and serene atmosphere.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden transform hover:-translate-y-2 transition duration-300">
+                    <div class="h-64 overflow-hidden">
+                        <img src="assets/upstairs%20hallway/upstairs%20hallway.jpg" alt="Upstairs Hallway" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-serif text-victorian-wood">Upstairs Hallway</h3>
+                        <p class="text-sm text-gray-600 mt-2">Beautifully restored hallway connecting the upper floor rooms.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Hallway Images -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div class="relative overflow-hidden rounded-lg shadow-xl group h-[400px]">
+                    <img src="assets/upstairs%20hallway/upstairs%20hallway%202.jpg" alt="Upstairs Hallway 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <div class="relative overflow-hidden rounded-lg shadow-xl group h-[400px]">
+                    <img src="assets/upstairs%20hallway/upstairs%20hallway%203.jpg" alt="Upstairs Hallway 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dining Room Gallery -->
+    <section id="dining" class="py-20 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-victorian-mauve font-semibold tracking-widest text-sm uppercase">Entertaining</span>
+                <h2 class="text-4xl md:text-5xl font-serif mt-2">Dining Gallery</h2>
+                <div class="w-16 h-1 bg-victorian-gold mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="relative overflow-hidden rounded-lg shadow-md group h-[300px]">
+                    <img src="assets/dining%20room/dining%20room%203.jpg" alt="Dining Room 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <div class="relative overflow-hidden rounded-lg shadow-md group h-[300px]">
+                    <img src="assets/dining%20room/dining%20room%204.jpg" alt="Dining Room 4" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <div class="relative overflow-hidden rounded-lg shadow-md group h-[300px]">
+                    <img src="assets/dining%20room/dining%20room%205.jpg" alt="Dining Room 5" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <div class="relative overflow-hidden rounded-lg shadow-md group h-[300px] lg:col-span-2">
+                    <img src="assets/dining%20room/gigq5JFR.jpg" alt="Dining Room Wide" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <div class="relative overflow-hidden rounded-lg shadow-md group h-[300px]">
+                    <img src="assets/staircase/f0aJSTuc.jpg" alt="Staircase Detail" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section with HTMX Interaction -->
+    <section id="contact" class="py-24 px-6 bg-victorian-green text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-serif mb-4">Schedule Your Private Tour</h2>
+            <p class="text-gray-300 text-lg mb-12 max-w-2xl mx-auto">This historic treasure won't last long. Reach out to our listing agent to experience the elegance in person.</p>
+
+            <!-- HTMX Form -->
+            <div id="form-response" class="bg-victorian-cream text-victorian-wood rounded-xl shadow-2xl p-8 md:p-12 text-left max-w-xl mx-auto">
+                <form hx-post="/send-message" hx-target="#form-response" hx-swap="innerHTML" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Full Name</label>
+                        <input type="text" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-victorian-gold" placeholder="John Doe">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Email Address</label>
+                        <input type="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-victorian-gold" placeholder="john@example.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Message</label>
+                        <textarea name="message" rows="4" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-victorian-gold" placeholder="I'd love to schedule a viewing..."></textarea>
+                    </div>
+                    
+                    <!-- HTMX Trigger Button -->
+                    <button type="submit" class="w-full bg-victorian-mauve hover:bg-victorian-gold text-white hover:text-victorian-wood font-bold py-3 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
+                        Send Inquiry
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-victorian-wood text-gray-400 py-12 px-6 border-t border-gray-700 text-center text-sm">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <span>&copy; 2026 The Victorian Estate. All Rights Reserved.</span>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition">MLS Listing</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
