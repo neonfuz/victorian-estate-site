@@ -19,6 +19,7 @@ Single-page static marketing site advertising the **Robert H. Butter House** (30
 - **Tailwind CSS via Play CDN** (`https://cdn.tailwindcss.com`) with an inline `tailwind.config` extending the theme. Custom palette: `victorian-wood` `#2e1f1a`, `victorian-cream` `#f3ece4`, `victorian-mauve` `#a3544b`, `victorian-green` `#2a3d2e`, `victorian-gold` `#d4b878`. Fonts: Playfair Display (serif), Raleway (sans).
 - **HTMX via CDN** — only used for the contact form (`hx-post="/send-message"`). **That endpoint does not exist**; the form is decorative until a backend or form service is wired up.
 - **Vanilla JS lightbox** at the bottom of `index.html`: it auto-collects every `<img>` on the page (except `#lightbox-img`) at `DOMContentLoaded`, so new images get click-to-zoom with zero extra work. The fade-in depends on a forced reflow (`void lightbox.offsetWidth`) between removing `hidden` and removing `opacity-0` — do not remove that line or the open animation breaks.
+- **Vanilla JS nav toggle**: below `xl` (1280px) the desktop link bar is replaced by a hamburger button (`#nav-toggle`) that shows/hides `#mobile-menu`; the logic (`initMobileNav`) lives in the same bottom script block and inits alongside the lightbox at `DOMContentLoaded`. Keep mobile menu links in sync with the desktop nav links.
 
 ## Conventions
 

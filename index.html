@@ -57,8 +57,8 @@
     <!-- Navigation -->
     <nav class="fixed top-0 w-full bg-victorian-green text-victorian-cream shadow-lg z-50 py-4 px-6 lg:px-12">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-serif italic">The Butter House <span class="text-sm not-italic text-victorian-gold tracking-widest ml-1">EST. 1893</span></a>
-            <div class="hidden lg:flex space-x-5 xl:space-x-8 text-sm uppercase tracking-wider">
+            <a href="#" class="text-2xl font-serif italic whitespace-nowrap">The Butter House <span class="text-sm not-italic text-victorian-gold tracking-widest ml-1">EST. 1893</span></a>
+            <div class="hidden xl:flex space-x-5 2xl:space-x-8 whitespace-nowrap text-sm uppercase tracking-wider">
                 <a href="#exterior" class="hover:text-victorian-gold transition">Exterior</a>
                 <a href="#interiors" class="hover:text-victorian-gold transition">Interiors</a>
                 <a href="#kitchen" class="hover:text-victorian-gold transition">Kitchen</a>
@@ -68,6 +68,25 @@
                 <a href="#amenities" class="hover:text-victorian-gold transition">Amenities</a>
                 <a href="#collection" class="hover:text-victorian-gold transition">Collection</a>
                 <a href="#contact" class="px-4 py-1 border border-victorian-gold hover:bg-victorian-gold hover:text-victorian-wood transition rounded-full">Inquire</a>
+            </div>
+            <!-- Hamburger toggle (shows below lg) -->
+            <button id="nav-toggle" class="xl:hidden p-1 hover:text-victorian-gold transition" aria-label="Toggle navigation menu" aria-expanded="false">
+                <svg id="nav-icon-open" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                <svg id="nav-icon-close" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+        </div>
+        <!-- Mobile menu panel (shows below lg) -->
+        <div id="mobile-menu" class="hidden xl:hidden border-t border-victorian-gold/30 mt-4 pt-4 pb-2">
+            <div class="flex flex-col space-y-3 text-sm uppercase tracking-wider">
+                <a href="#exterior" class="hover:text-victorian-gold transition">Exterior</a>
+                <a href="#interiors" class="hover:text-victorian-gold transition">Interiors</a>
+                <a href="#kitchen" class="hover:text-victorian-gold transition">Kitchen</a>
+                <a href="#master-suite" class="hover:text-victorian-gold transition">Master Suite</a>
+                <a href="#baths" class="hover:text-victorian-gold transition">Baths</a>
+                <a href="#bedrooms" class="hover:text-victorian-gold transition">Bedrooms</a>
+                <a href="#amenities" class="hover:text-victorian-gold transition">Amenities</a>
+                <a href="#collection" class="hover:text-victorian-gold transition">Collection</a>
+                <a href="#contact" class="self-start px-4 py-1 border border-victorian-gold hover:bg-victorian-gold hover:text-victorian-wood transition rounded-full">Inquire</a>
             </div>
         </div>
     </nav>
@@ -686,7 +705,41 @@
             }
         });
 
-        document.addEventListener('DOMContentLoaded', initLightbox);
+        // Mobile nav hamburger toggle
+        function initMobileNav() {
+            const toggle = document.getElementById('nav-toggle');
+            const menu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('nav-icon-open');
+            const iconClose = document.getElementById('nav-icon-close');
+
+            function closeMenu() {
+                menu.classList.add('hidden');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+                toggle.setAttribute('aria-expanded', 'false');
+            }
+
+            toggle.addEventListener('click', function() {
+                if (menu.classList.contains('hidden')) {
+                    menu.classList.remove('hidden');
+                    iconOpen.classList.add('hidden');
+                    iconClose.classList.remove('hidden');
+                    toggle.setAttribute('aria-expanded', 'true');
+                } else {
+                    closeMenu();
+                }
+            });
+
+            // Close the menu whenever a link inside it is tapped
+            menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initLightbox();
+            initMobileNav();
+        });
     </script>
 
 </body>
