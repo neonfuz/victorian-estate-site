@@ -24,7 +24,7 @@ Single-page static marketing site advertising the **Robert H. Butter House** (30
 
 - **Image paths**: files and folders under `assets/` contain spaces. In `src`/`url()` attributes, spaces are written as **`%20`** (e.g. `assets/dining%20room/dining%20room%201.jpg`). Follow this when adding images.
 - **Sections alternate backgrounds** in order: `bg-white` → `bg-victorian-cream`. Keep the alternation when inserting new sections. The nav has smooth-scroll anchor links; every nav `href="#x"` must have a matching `id="x"`.
-- **Photo placement matters**: images live in folders by room (`assets/bedroom/`, `assets/bathrooms/`, etc.) and should be shown in the matching section. The master bath photos live in `assets/bedroom/` (not `assets/bathrooms/`) because they belong to the master suite.
+- **Photo placement matters**: images live in folders by room (`assets/bedroom/`, `assets/bathrooms/`, etc.). The master en-suite bath photos live in `assets/bedroom/` (not `assets/bathrooms/`) but are **displayed in The Baths section**, which shows every bath in the home; the Master Suite section sits directly above The Baths.
 - **Commit style**: short, lowercase, imperative summaries (e.g. `add image lightbox with fade-in/out transitions`). Commit in logical chunks when making multi-part changes. Assets are committed to git; `.DS_Store` is gitignored.
 
 ## Known Placeholders / TODOs for the Owner
