@@ -8,7 +8,7 @@ Single-page static marketing site advertising the **Robert H. Butter House** (30
 
 - **Build year is 1893.** Some old listing snippets (including one provided by the owner) say 1886 — **that is wrong**. The Wisconsin Historical Society's Architecture & History Inventory record (#46371) lists 1893, and the owner has confirmed the Historical Society record is authoritative. Always use 1893 (or "c. 1893").
 - Historic name: **Robert H. Butter House**. Style: **Queen Anne** Victorian, clapboard.
-- **3 bedrooms, 2½ baths, ~6,250 sq ft, 0.67-acre lot, 4-car detached garage.**
+- **3 bedrooms, 2½ baths, ~2,650 sq ft, 0.67-acre lot, 4-car detached garage.**
 - **The downstairs bathroom is the half bath.** The upstairs bath (shower, brass high-tank toilet, mosaic floor) and master en-suite are full baths.
 - The **master bedroom en-suite bath** photos show one room from two angles — it is not two separate bathrooms.
 - Previous owner **Karen Hale** collected the Victorian / Art Nouveau antiques; **the collection is sold with the house**. She is named on the site with the owner's approval.
