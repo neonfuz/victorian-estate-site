@@ -13,8 +13,6 @@
     <!-- Tailwind CSS (Play CDN for config support) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- HTMX -->
-    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 
     <!-- Custom Tailwind Configuration & Colors -->
     <script>
@@ -574,7 +572,7 @@
         </div>
     </section>
 
-    <!-- Contact Section with HTMX Interaction -->
+    <!-- Contact Section -->
     <section id="contact" class="py-24 px-6 bg-victorian-green text-white">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-4xl md:text-5xl font-serif mb-4">Now Accepting Offers</h2>
@@ -592,9 +590,13 @@
                 </a>
             </div>
 
-            <!-- HTMX Form -->
+            <!-- Netlify Form -->
             <div id="form-response" class="bg-victorian-cream text-victorian-wood rounded-xl shadow-2xl p-8 md:p-12 text-left max-w-xl mx-auto">
-                <form hx-post="/send-message" hx-target="#form-response" hx-swap="innerHTML" class="space-y-6">
+                <form name="inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-6">
+                    <!-- Netlify honeypot spam trap (leave empty) -->
+                    <div class="hidden" aria-hidden="true">
+                        <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" /></label>
+                    </div>
                     <div>
                         <label class="block text-sm font-semibold mb-2">Full Name</label>
                         <input type="text" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-victorian-gold" placeholder="John Doe">
@@ -608,7 +610,7 @@
                         <textarea name="message" rows="4" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-victorian-gold" placeholder="I'd love to schedule a viewing..."></textarea>
                     </div>
                     
-                    <!-- HTMX Trigger Button -->
+                    <!-- Submit Button -->
                     <button type="submit" class="w-full bg-victorian-mauve hover:bg-victorian-gold text-white hover:text-victorian-wood font-bold py-3 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
                         Send Inquiry
                     </button>
@@ -763,9 +765,41 @@
             });
         }
 
+        // Contact form: submit via Netlify Forms and show an inline confirmation
+        function initContactForm() {
+            const form = document.querySelector('form[name="inquiry"]');
+            if (!form) return;
+
+            function showThanks() {
+                document.getElementById('form-response').innerHTML =
+                    '<div class="text-center py-8">' +
+                        '<div class="text-5xl text-victorian-gold mb-4">&#10003;</div>' +
+                        '<h3 class="text-2xl font-serif mb-2">Thank You</h3>' +
+                        '<p class="text-gray-600">Your inquiry has been received. We will be in touch shortly to arrange your visit.</p>' +
+                    '</div>';
+            }
+
+            function showError() {
+                form.insertAdjacentHTML('beforeend',
+                    '<p class="text-sm text-red-600 text-center">Something went wrong — please call or email us directly.</p>');
+            }
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(new FormData(form)).toString()
+                })
+                .then(response => response.ok ? showThanks() : showError())
+                .catch(showError);
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             initLightbox();
             initMobileNav();
+            initContactForm();
         });
     </script>
 

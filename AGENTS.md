@@ -17,7 +17,7 @@ Single-page static marketing site advertising the **Robert H. Butter House** (30
 ## Tech Stack
 
 - **Tailwind CSS via Play CDN** (`https://cdn.tailwindcss.com`) with an inline `tailwind.config` extending the theme. Custom palette: `victorian-wood` `#2e1f1a`, `victorian-cream` `#f3ece4`, `victorian-mauve` `#a3544b`, `victorian-green` `#2a3d2e`, `victorian-gold` `#d4b878`. Fonts: Playfair Display (serif), Raleway (sans).
-- **HTMX via CDN** — only used for the contact form (`hx-post="/send-message"`). **That endpoint does not exist**; the form is decorative until a backend or form service is wired up.
+- **Netlify Forms** — the contact form (`<form name="inquiry" data-netlify="true">` with honeypot `netlify-honeypot="bot-field"`) is parsed by Netlify at deploy time; submissions show up in the Netlify dashboard under Forms, and email notifications must be configured there (Configuration → Notifications → Form submission notifications). Vanilla JS (`initContactForm`, in the same bottom script block) intercepts submission to show an inline confirmation via `fetch`; without JS, visitors get Netlify's default success page. (HTMX was removed — no longer a dependency.)
 - **Vanilla JS lightbox** at the bottom of `index.html`: it auto-collects every `<img>` on the page (except `#lightbox-img`) at `DOMContentLoaded`, so new images get click-to-zoom with zero extra work. The fade-in depends on a forced reflow (`void lightbox.offsetWidth`) between removing `hidden` and removing `opacity-0` — do not remove that line or the open animation breaks.
 - **Vanilla JS nav toggle**: below `xl` (1280px) the desktop link bar is replaced by a hamburger button (`#nav-toggle`) that shows/hides `#mobile-menu`; the logic (`initMobileNav`) lives in the same bottom script block and inits alongside the lightbox at `DOMContentLoaded`. Keep mobile menu links in sync with the desktop nav links.
 
@@ -31,5 +31,4 @@ Single-page static marketing site advertising the **Robert H. Butter House** (30
 ## Known Placeholders / TODOs for the Owner
 
 - Phone `(555) 555-5555` (`tel:+15555555555`) and email `agent@example.com` in the Contact section are **placeholders** the owner will replace manually.
-- The HTMX contact form needs a real backend or form service (e.g. Formspree) before it can actually send inquiries.
 - No price or MLS details are shown — intentionally generic per the owner's request.
