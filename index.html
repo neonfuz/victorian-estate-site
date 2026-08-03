@@ -20,6 +20,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
 
+    <!-- Preload the hero image (LCP) -->
+    <link rel="preload" as="image" type="image/webp" href="img/house-exterior/front-view-1440w.webp"
+          imagesrcset="img/house-exterior/front-view-480w.webp 480w, img/house-exterior/front-view-960w.webp 960w, img/house-exterior/front-view-1440w.webp 1440w, img/house-exterior/front-view-2000w.webp 2000w"
+          imagesizes="100vw" fetchpriority="high">
+
     <!-- Tailwind CSS (Play CDN for config support) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -46,16 +51,6 @@
     </script>
 
     <style>
-        .hero-bg {
-            background-image: linear-gradient(rgba(42, 61, 46, 0.6), rgba(42, 61, 46, 0.6)), 
-                              url('assets/house%20exterior/front%20view.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-        .fireplace-bg {
-            background-image: url('assets/living%20room/fireplace.jpg');
-            background-size: cover;
-        }
         /* Smooth scrolling */
         html { scroll-behavior: smooth; }
     </style>
@@ -100,8 +95,13 @@
     </nav>
 
     <!-- Hero Section -->
-    <header id="home" class="hero-bg min-h-screen flex items-center justify-center text-center text-white px-6">
-        <div class="max-w-4xl space-y-6">
+    <header id="home" class="relative min-h-screen flex items-center justify-center text-center text-white px-6 overflow-hidden">
+        <picture>
+            <source type="image/webp" srcset="img/house-exterior/front-view-480w.webp 480w, img/house-exterior/front-view-960w.webp 960w, img/house-exterior/front-view-1440w.webp 1440w, img/house-exterior/front-view-2000w.webp 2000w" sizes="100vw">
+            <img src="img/house-exterior/front-view-1440w.jpg" srcset="img/house-exterior/front-view-480w.jpg 480w, img/house-exterior/front-view-960w.jpg 960w, img/house-exterior/front-view-1440w.jpg 1440w, img/house-exterior/front-view-2000w.jpg 2000w" sizes="100vw" width="1440" height="960" alt="" fetchpriority="high" decoding="async" data-full-webp="img/house-exterior/front-view-2000w.webp" data-full-jpg="img/house-exterior/front-view-2000w.jpg" class="absolute inset-0 w-full h-full object-cover">
+        </picture>
+        <div class="absolute inset-0 bg-victorian-green/60"></div>
+        <div class="relative max-w-4xl space-y-6">
             <p class="text-victorian-gold tracking-[0.3em] text-sm uppercase drop-shadow-md">Mayville, Wisconsin · Queen Anne Victorian</p>
             <h1 class="text-5xl md:text-7xl font-serif font-bold leading-tight drop-shadow-lg">
                 The Robert H. Butter House
@@ -156,7 +156,10 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                 <div class="relative overflow-hidden rounded-lg shadow-xl group h-[400px] md:h-[500px]">
-                    <img src="assets/house%20exterior/front%20view.jpg" alt="Front View of Victorian House" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <picture>
+                        <source type="image/webp" srcset="img/house-exterior/front-view-480w.webp 480w, img/house-exterior/front-view-960w.webp 960w, img/house-exterior/front-view-1440w.webp 1440w, img/house-exterior/front-view-2000w.webp 2000w" sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw">
+                        <img src="img/house-exterior/front-view-960w.jpg" srcset="img/house-exterior/front-view-480w.jpg 480w, img/house-exterior/front-view-960w.jpg 960w, img/house-exterior/front-view-1440w.jpg 1440w, img/house-exterior/front-view-2000w.jpg 2000w" sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw" width="960" height="640" alt="Front View of Victorian House" loading="lazy" decoding="async" data-full-webp="img/house-exterior/front-view-2000w.webp" data-full-jpg="img/house-exterior/front-view-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </picture>
                     <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-6 text-white">
                         <h3 class="text-xl font-serif">Front View</h3>
                         <p class="text-sm font-light text-gray-200">Historic Victorian architecture with original details</p>
@@ -164,15 +167,24 @@
                 </div>
                 <div class="grid grid-cols-2 gap-6">
                     <div class="relative overflow-hidden rounded-lg shadow-md group h-[240px]">
-                        <img src="assets/house%20exterior/turret%201.jpg" alt="Iconic Turret" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <picture>
+                            <source type="image/webp" srcset="img/house-exterior/turret-1-480w.webp 480w, img/house-exterior/turret-1-960w.webp 960w, img/house-exterior/turret-1-1440w.webp 1440w, img/house-exterior/turret-1-1512w.webp 1512w" sizes="(min-width: 1280px) 288px, (min-width: 768px) 24vw, 50vw">
+                            <img src="img/house-exterior/turret-1-960w.jpg" srcset="img/house-exterior/turret-1-480w.jpg 480w, img/house-exterior/turret-1-960w.jpg 960w, img/house-exterior/turret-1-1440w.jpg 1440w, img/house-exterior/turret-1-1512w.jpg 1512w" sizes="(min-width: 1280px) 288px, (min-width: 768px) 24vw, 50vw" width="960" height="1280" alt="Iconic Turret" loading="lazy" decoding="async" data-full-webp="img/house-exterior/turret-1-1512w.webp" data-full-jpg="img/house-exterior/turret-1-1512w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </picture>
                         <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">Iconic Turret</div>
                     </div>
                     <div class="relative overflow-hidden rounded-lg shadow-md group h-[240px]">
-                        <img src="assets/house%20exterior/front%20yard%20from%20sidewalk.jpg" alt="Front Yard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <picture>
+                            <source type="image/webp" srcset="img/house-exterior/front-yard-from-sidewalk-480w.webp 480w, img/house-exterior/front-yard-from-sidewalk-960w.webp 960w, img/house-exterior/front-yard-from-sidewalk-1440w.webp 1440w, img/house-exterior/front-yard-from-sidewalk-2000w.webp 2000w" sizes="(min-width: 1280px) 288px, (min-width: 768px) 24vw, 50vw">
+                            <img src="img/house-exterior/front-yard-from-sidewalk-960w.jpg" srcset="img/house-exterior/front-yard-from-sidewalk-480w.jpg 480w, img/house-exterior/front-yard-from-sidewalk-960w.jpg 960w, img/house-exterior/front-yard-from-sidewalk-1440w.jpg 1440w, img/house-exterior/front-yard-from-sidewalk-2000w.jpg 2000w" sizes="(min-width: 1280px) 288px, (min-width: 768px) 24vw, 50vw" width="960" height="640" alt="Front Yard" loading="lazy" decoding="async" data-full-webp="img/house-exterior/front-yard-from-sidewalk-2000w.webp" data-full-jpg="img/house-exterior/front-yard-from-sidewalk-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </picture>
                         <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">Front Yard</div>
                     </div>
                     <div class="col-span-2 relative overflow-hidden rounded-lg shadow-md group h-[240px]">
-                        <img src="assets/porch/porch.jpg" alt="Front Porch" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <picture>
+                            <source type="image/webp" srcset="img/porch/porch-480w.webp 480w, img/porch/porch-960w.webp 960w, img/porch/porch-1440w.webp 1440w, img/porch/porch-2000w.webp 2000w" sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw">
+                            <img src="img/porch/porch-960w.jpg" srcset="img/porch/porch-480w.jpg 480w, img/porch/porch-960w.jpg 960w, img/porch/porch-1440w.jpg 1440w, img/porch/porch-2000w.jpg 2000w" sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw" width="960" height="772" alt="Front Porch" loading="lazy" decoding="async" data-full-webp="img/porch/porch-2000w.webp" data-full-jpg="img/porch/porch-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </picture>
                         <div class="absolute bottom-0 w-full bg-gradient-to-t from-black/70 to-transparent p-4 text-white">
                             <h3 class="text-lg font-serif">Expansive Covered Porch</h3>
                         </div>
@@ -183,15 +195,24 @@
             <!-- Additional Exterior Views -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
                 <div class="relative overflow-hidden rounded-lg shadow-md group h-[240px]">
-                    <img src="assets/house%20exterior/front%20stairs.jpg" alt="Front Stairs" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <picture>
+                        <source type="image/webp" srcset="img/house-exterior/front-stairs-480w.webp 480w, img/house-exterior/front-stairs-960w.webp 960w, img/house-exterior/front-stairs-1440w.webp 1440w, img/house-exterior/front-stairs-1512w.webp 1512w" sizes="(min-width: 1280px) 395px, (min-width: 768px) 33vw, 100vw">
+                        <img src="img/house-exterior/front-stairs-960w.jpg" srcset="img/house-exterior/front-stairs-480w.jpg 480w, img/house-exterior/front-stairs-960w.jpg 960w, img/house-exterior/front-stairs-1440w.jpg 1440w, img/house-exterior/front-stairs-1512w.jpg 1512w" sizes="(min-width: 1280px) 395px, (min-width: 768px) 33vw, 100vw" width="960" height="1280" alt="Front Stairs" loading="lazy" decoding="async" data-full-webp="img/house-exterior/front-stairs-1512w.webp" data-full-jpg="img/house-exterior/front-stairs-1512w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </picture>
                     <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">Grand Front Stairs</div>
                 </div>
                 <div class="relative overflow-hidden rounded-lg shadow-md group h-[240px]">
-                    <img src="assets/porch/porch%202.jpg" alt="Porch Detail" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <picture>
+                        <source type="image/webp" srcset="img/porch/porch-2-480w.webp 480w, img/porch/porch-2-960w.webp 960w, img/porch/porch-2-1440w.webp 1440w, img/porch/porch-2-2000w.webp 2000w" sizes="(min-width: 1280px) 395px, (min-width: 768px) 33vw, 100vw">
+                        <img src="img/porch/porch-2-960w.jpg" srcset="img/porch/porch-2-480w.jpg 480w, img/porch/porch-2-960w.jpg 960w, img/porch/porch-2-1440w.jpg 1440w, img/porch/porch-2-2000w.jpg 2000w" sizes="(min-width: 1280px) 395px, (min-width: 768px) 33vw, 100vw" width="960" height="640" alt="Porch Detail" loading="lazy" decoding="async" data-full-webp="img/porch/porch-2-2000w.webp" data-full-jpg="img/porch/porch-2-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </picture>
                     <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">Porch Details</div>
                 </div>
                 <div class="relative overflow-hidden rounded-lg shadow-md group h-[240px]">
-                    <img src="assets/yard/yard%201.jpg" alt="Yard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <picture>
+                        <source type="image/webp" srcset="img/yard/yard-1-480w.webp 480w, img/yard/yard-1-960w.webp 960w, img/yard/yard-1-1440w.webp 1440w, img/yard/yard-1-2000w.webp 2000w" sizes="(min-width: 1280px) 395px, (min-width: 768px) 33vw, 100vw">
+                        <img src="img/yard/yard-1-960w.jpg" srcset="img/yard/yard-1-480w.jpg 480w, img/yard/yard-1-960w.jpg 960w, img/yard/yard-1-1440w.jpg 1440w, img/yard/yard-1-2000w.jpg 2000w" sizes="(min-width: 1280px) 395px, (min-width: 768px) 33vw, 100vw" width="960" height="640" alt="Yard" loading="lazy" decoding="async" data-full-webp="img/yard/yard-1-2000w.webp" data-full-jpg="img/yard/yard-1-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </picture>
                     <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">Beautiful Yard</div>
                 </div>
             </div>
@@ -204,15 +225,24 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="relative overflow-hidden rounded-lg shadow-md group h-[260px]">
-                        <img src="assets/yard/yard%202.jpg" alt="Side Yard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <picture>
+                            <source type="image/webp" srcset="img/yard/yard-2-480w.webp 480w, img/yard/yard-2-960w.webp 960w, img/yard/yard-2-1440w.webp 1440w, img/yard/yard-2-2000w.webp 2000w" sizes="(min-width: 1280px) 395px, (min-width: 768px) 33vw, 100vw">
+                            <img src="img/yard/yard-2-960w.jpg" srcset="img/yard/yard-2-480w.jpg 480w, img/yard/yard-2-960w.jpg 960w, img/yard/yard-2-1440w.jpg 1440w, img/yard/yard-2-2000w.jpg 2000w" sizes="(min-width: 1280px) 395px, (min-width: 768px) 33vw, 100vw" width="960" height="640" alt="Side Yard" loading="lazy" decoding="async" data-full-webp="img/yard/yard-2-2000w.webp" data-full-jpg="img/yard/yard-2-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </picture>
                         <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">0.67-Acre Lot</div>
                     </div>
                     <div class="relative overflow-hidden rounded-lg shadow-md group h-[260px]">
-                        <img src="assets/yard/yard%203.jpg" alt="Back Yard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <picture>
+                            <source type="image/webp" srcset="img/yard/yard-3-480w.webp 480w, img/yard/yard-3-960w.webp 960w, img/yard/yard-3-1440w.webp 1440w, img/yard/yard-3-2000w.webp 2000w" sizes="(min-width: 1280px) 395px, (min-width: 768px) 33vw, 100vw">
+                            <img src="img/yard/yard-3-960w.jpg" srcset="img/yard/yard-3-480w.jpg 480w, img/yard/yard-3-960w.jpg 960w, img/yard/yard-3-1440w.jpg 1440w, img/yard/yard-3-2000w.jpg 2000w" sizes="(min-width: 1280px) 395px, (min-width: 768px) 33vw, 100vw" width="960" height="640" alt="Back Yard" loading="lazy" decoding="async" data-full-webp="img/yard/yard-3-2000w.webp" data-full-jpg="img/yard/yard-3-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </picture>
                         <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">Mature Landscaping</div>
                     </div>
                     <div class="relative overflow-hidden rounded-lg shadow-md group h-[260px]">
-                        <img src="assets/yard/i2W4IJ4H.jpg" alt="Grounds" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <picture>
+                            <source type="image/webp" srcset="img/yard/i2w4ij4h-480w.webp 480w, img/yard/i2w4ij4h-960w.webp 960w, img/yard/i2w4ij4h-1440w.webp 1440w, img/yard/i2w4ij4h-2000w.webp 2000w" sizes="(min-width: 1280px) 395px, (min-width: 768px) 33vw, 100vw">
+                            <img src="img/yard/i2w4ij4h-960w.jpg" srcset="img/yard/i2w4ij4h-480w.jpg 480w, img/yard/i2w4ij4h-960w.jpg 960w, img/yard/i2w4ij4h-1440w.jpg 1440w, img/yard/i2w4ij4h-2000w.jpg 2000w" sizes="(min-width: 1280px) 395px, (min-width: 768px) 33vw, 100vw" width="960" height="640" alt="Grounds" loading="lazy" decoding="async" data-full-webp="img/yard/i2w4ij4h-2000w.webp" data-full-jpg="img/yard/i2w4ij4h-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </picture>
                         <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">Room to Roam</div>
                     </div>
                 </div>
@@ -226,23 +256,38 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="relative overflow-hidden rounded-lg shadow-md group h-[260px]">
-                        <img src="assets/garden/Butterfly%20Garden.jpg" alt="Pollinator bed with bee balm, coneflowers, and a garden cherub" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <picture>
+                            <source type="image/webp" srcset="img/garden/butterfly-garden-480w.webp 480w, img/garden/butterfly-garden-960w.webp 960w, img/garden/butterfly-garden-1440w.webp 1440w, img/garden/butterfly-garden-2000w.webp 2000w" sizes="(min-width: 1280px) 395px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw">
+                            <img src="img/garden/butterfly-garden-960w.jpg" srcset="img/garden/butterfly-garden-480w.jpg 480w, img/garden/butterfly-garden-960w.jpg 960w, img/garden/butterfly-garden-1440w.jpg 1440w, img/garden/butterfly-garden-2000w.jpg 2000w" sizes="(min-width: 1280px) 395px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="960" height="1280" alt="Pollinator bed with bee balm, coneflowers, and a garden cherub" loading="lazy" decoding="async" data-full-webp="img/garden/butterfly-garden-2000w.webp" data-full-jpg="img/garden/butterfly-garden-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </picture>
                         <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">The Butterfly Garden</div>
                     </div>
                     <div class="relative overflow-hidden rounded-lg shadow-md group h-[260px]">
-                        <img src="assets/garden/Courtyard.jpg" alt="Brick-edged courtyard bed with coreopsis and daylilies" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <picture>
+                            <source type="image/webp" srcset="img/garden/courtyard-480w.webp 480w, img/garden/courtyard-960w.webp 960w, img/garden/courtyard-1440w.webp 1440w, img/garden/courtyard-2000w.webp 2000w" sizes="(min-width: 1280px) 395px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw">
+                            <img src="img/garden/courtyard-960w.jpg" srcset="img/garden/courtyard-480w.jpg 480w, img/garden/courtyard-960w.jpg 960w, img/garden/courtyard-1440w.jpg 1440w, img/garden/courtyard-2000w.jpg 2000w" sizes="(min-width: 1280px) 395px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="960" height="1184" alt="Brick-edged courtyard bed with coreopsis and daylilies" loading="lazy" decoding="async" data-full-webp="img/garden/courtyard-2000w.webp" data-full-jpg="img/garden/courtyard-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </picture>
                         <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">The Courtyard</div>
                     </div>
                     <div class="relative overflow-hidden rounded-lg shadow-md group h-[260px]">
-                        <img src="assets/garden/Ferns.jpg" alt="Ferns and hostas lining the brick garden walk" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <picture>
+                            <source type="image/webp" srcset="img/garden/ferns-480w.webp 480w, img/garden/ferns-960w.webp 960w, img/garden/ferns-1440w.webp 1440w, img/garden/ferns-2000w.webp 2000w" sizes="(min-width: 1280px) 395px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw">
+                            <img src="img/garden/ferns-960w.jpg" srcset="img/garden/ferns-480w.jpg 480w, img/garden/ferns-960w.jpg 960w, img/garden/ferns-1440w.jpg 1440w, img/garden/ferns-2000w.jpg 2000w" sizes="(min-width: 1280px) 395px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="960" height="1280" alt="Ferns and hostas lining the brick garden walk" loading="lazy" decoding="async" data-full-webp="img/garden/ferns-2000w.webp" data-full-jpg="img/garden/ferns-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </picture>
                         <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">Perennial Border</div>
                     </div>
                     <div class="relative overflow-hidden rounded-lg shadow-md group h-[260px] lg:col-span-2">
-                        <img src="assets/garden/Sidewalk%20Garden%201.jpg" alt="Fieldstone-edged sidewalk garden with ornamental grass and sedum" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <picture>
+                            <source type="image/webp" srcset="img/garden/sidewalk-garden-1-480w.webp 480w, img/garden/sidewalk-garden-1-960w.webp 960w, img/garden/sidewalk-garden-1-1440w.webp 1440w, img/garden/sidewalk-garden-1-2000w.webp 2000w" sizes="(min-width: 1280px) 805px, (min-width: 1024px) 66vw, (min-width: 768px) 50vw, 100vw">
+                            <img src="img/garden/sidewalk-garden-1-960w.jpg" srcset="img/garden/sidewalk-garden-1-480w.jpg 480w, img/garden/sidewalk-garden-1-960w.jpg 960w, img/garden/sidewalk-garden-1-1440w.jpg 1440w, img/garden/sidewalk-garden-1-2000w.jpg 2000w" sizes="(min-width: 1280px) 805px, (min-width: 1024px) 66vw, (min-width: 768px) 50vw, 100vw" width="960" height="1280" alt="Fieldstone-edged sidewalk garden with ornamental grass and sedum" loading="lazy" decoding="async" data-full-webp="img/garden/sidewalk-garden-1-2000w.webp" data-full-jpg="img/garden/sidewalk-garden-1-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </picture>
                         <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">Sidewalk Garden</div>
                     </div>
                     <div class="relative overflow-hidden rounded-lg shadow-md group h-[260px]">
-                        <img src="assets/garden/Sidewalk%20Garden%202.jpg" alt="Sidewalk garden bed with daylilies, hostas, and hydrangeas" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <picture>
+                            <source type="image/webp" srcset="img/garden/sidewalk-garden-2-480w.webp 480w, img/garden/sidewalk-garden-2-960w.webp 960w, img/garden/sidewalk-garden-2-1440w.webp 1440w, img/garden/sidewalk-garden-2-2000w.webp 2000w" sizes="(min-width: 1280px) 395px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw">
+                            <img src="img/garden/sidewalk-garden-2-960w.jpg" srcset="img/garden/sidewalk-garden-2-480w.jpg 480w, img/garden/sidewalk-garden-2-960w.jpg 960w, img/garden/sidewalk-garden-2-1440w.jpg 1440w, img/garden/sidewalk-garden-2-2000w.jpg 2000w" sizes="(min-width: 1280px) 395px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="960" height="1280" alt="Sidewalk garden bed with daylilies, hostas, and hydrangeas" loading="lazy" decoding="async" data-full-webp="img/garden/sidewalk-garden-2-2000w.webp" data-full-jpg="img/garden/sidewalk-garden-2-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </picture>
                         <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">Sidewalk Garden in Bloom</div>
                     </div>
                 </div>
@@ -263,7 +308,10 @@
                 <!-- Card 1 -->
                 <div class="bg-white rounded-xl shadow-xl overflow-hidden transform hover:-translate-y-2 transition duration-300">
                     <div class="h-64 overflow-hidden">
-                        <img src="assets/living%20room/fireplace.jpg" alt="Fireplace" class="w-full h-full object-cover">
+                        <picture>
+                            <source type="image/webp" srcset="img/living-room/fireplace-480w.webp 480w, img/living-room/fireplace-960w.webp 960w, img/living-room/fireplace-1440w.webp 1440w, img/living-room/fireplace-2000w.webp 2000w" sizes="(min-width: 1280px) 389px, (min-width: 1024px) 33vw, 100vw">
+                            <img src="img/living-room/fireplace-960w.jpg" srcset="img/living-room/fireplace-480w.jpg 480w, img/living-room/fireplace-960w.jpg 960w, img/living-room/fireplace-1440w.jpg 1440w, img/living-room/fireplace-2000w.jpg 2000w" sizes="(min-width: 1280px) 389px, (min-width: 1024px) 33vw, 100vw" width="960" height="1035" alt="Fireplace" loading="lazy" decoding="async" data-full-webp="img/living-room/fireplace-2000w.webp" data-full-jpg="img/living-room/fireplace-2000w.jpg" class="w-full h-full object-cover">
+                        </picture>
                     </div>
                     <div class="p-6 text-center">
                         <h3 class="text-xl font-serif text-victorian-wood">The Parlor & Mantel</h3>
@@ -273,7 +321,10 @@
                 <!-- Card 2 -->
                 <div class="bg-white rounded-xl shadow-xl overflow-hidden transform hover:-translate-y-2 transition duration-300">
                     <div class="h-64 overflow-hidden">
-                        <img src="assets/dining%20room/dining%20room%201.jpg" alt="Dining Room" class="w-full h-full object-cover">
+                        <picture>
+                            <source type="image/webp" srcset="img/dining-room/dining-room-1-480w.webp 480w, img/dining-room/dining-room-1-960w.webp 960w, img/dining-room/dining-room-1-1440w.webp 1440w, img/dining-room/dining-room-1-2000w.webp 2000w" sizes="(min-width: 1280px) 389px, (min-width: 1024px) 33vw, 100vw">
+                            <img src="img/dining-room/dining-room-1-960w.jpg" srcset="img/dining-room/dining-room-1-480w.jpg 480w, img/dining-room/dining-room-1-960w.jpg 960w, img/dining-room/dining-room-1-1440w.jpg 1440w, img/dining-room/dining-room-1-2000w.jpg 2000w" sizes="(min-width: 1280px) 389px, (min-width: 1024px) 33vw, 100vw" width="960" height="640" alt="Dining Room" loading="lazy" decoding="async" data-full-webp="img/dining-room/dining-room-1-2000w.webp" data-full-jpg="img/dining-room/dining-room-1-2000w.jpg" class="w-full h-full object-cover">
+                        </picture>
                     </div>
                     <div class="p-6 text-center">
                         <h3 class="text-xl font-serif text-victorian-wood">Formal Dining</h3>
@@ -283,7 +334,10 @@
                 <!-- Card 3 -->
                 <div class="bg-white rounded-xl shadow-xl overflow-hidden transform hover:-translate-y-2 transition duration-300">
                     <div class="h-64 overflow-hidden">
-                        <img src="assets/living%20room/living%20room.jpg" alt="Living Room" class="w-full h-full object-cover">
+                        <picture>
+                            <source type="image/webp" srcset="img/living-room/living-room-480w.webp 480w, img/living-room/living-room-960w.webp 960w, img/living-room/living-room-1440w.webp 1440w, img/living-room/living-room-2000w.webp 2000w" sizes="(min-width: 1280px) 389px, (min-width: 1024px) 33vw, 100vw">
+                            <img src="img/living-room/living-room-960w.jpg" srcset="img/living-room/living-room-480w.jpg 480w, img/living-room/living-room-960w.jpg 960w, img/living-room/living-room-1440w.jpg 1440w, img/living-room/living-room-2000w.jpg 2000w" sizes="(min-width: 1280px) 389px, (min-width: 1024px) 33vw, 100vw" width="960" height="640" alt="Living Room" loading="lazy" decoding="async" data-full-webp="img/living-room/living-room-2000w.webp" data-full-jpg="img/living-room/living-room-2000w.jpg" class="w-full h-full object-cover">
+                        </picture>
                     </div>
                     <div class="p-6 text-center">
                         <h3 class="text-xl font-serif text-victorian-wood">Modern Meets History</h3>
@@ -295,14 +349,20 @@
             <!-- Staircase -->
             <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="relative overflow-hidden rounded-lg shadow-xl group h-[400px]">
-                    <img src="assets/staircase/stairs.jpg" alt="Grand Staircase" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <picture>
+                        <source type="image/webp" srcset="img/staircase/stairs-480w.webp 480w, img/staircase/stairs-960w.webp 960w, img/staircase/stairs-1440w.webp 1440w, img/staircase/stairs-2000w.webp 2000w" sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw">
+                        <img src="img/staircase/stairs-960w.jpg" srcset="img/staircase/stairs-480w.jpg 480w, img/staircase/stairs-960w.jpg 960w, img/staircase/stairs-1440w.jpg 1440w, img/staircase/stairs-2000w.jpg 2000w" sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw" width="960" height="640" alt="Grand Staircase" loading="lazy" decoding="async" data-full-webp="img/staircase/stairs-2000w.webp" data-full-jpg="img/staircase/stairs-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </picture>
                     <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-6 text-white">
                         <h3 class="text-xl font-serif">Grand Staircase</h3>
                         <p class="text-sm font-light text-gray-200">Ornate hardwood staircase with original banisters</p>
                     </div>
                 </div>
                 <div class="relative overflow-hidden rounded-lg shadow-xl group h-[400px]">
-                    <img src="assets/staircase/hallway%20staircase.jpg" alt="Hallway Staircase" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <picture>
+                        <source type="image/webp" srcset="img/staircase/hallway-staircase-480w.webp 480w, img/staircase/hallway-staircase-960w.webp 960w, img/staircase/hallway-staircase-1440w.webp 1440w, img/staircase/hallway-staircase-2000w.webp 2000w" sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw">
+                        <img src="img/staircase/hallway-staircase-960w.jpg" srcset="img/staircase/hallway-staircase-480w.jpg 480w, img/staircase/hallway-staircase-960w.jpg 960w, img/staircase/hallway-staircase-1440w.jpg 1440w, img/staircase/hallway-staircase-2000w.jpg 2000w" sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw" width="960" height="640" alt="Hallway Staircase" loading="lazy" decoding="async" data-full-webp="img/staircase/hallway-staircase-2000w.webp" data-full-jpg="img/staircase/hallway-staircase-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </picture>
                     <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-6 text-white">
                         <h3 class="text-xl font-serif">Hallway & Stairs</h3>
                         <p class="text-sm font-light text-gray-200">Beautiful hallway leading to upper floors</p>
@@ -317,7 +377,10 @@
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="relative rounded-lg overflow-hidden shadow-2xl h-[600px]">
-                    <img src="assets/kitchen/kitchen.jpg" alt="Kitchen with custom hardwood cabinetry, center island, and schoolhouse pendant lights" class="w-full h-full object-cover">
+                    <picture>
+                        <source type="image/webp" srcset="img/kitchen/kitchen-480w.webp 480w, img/kitchen/kitchen-960w.webp 960w, img/kitchen/kitchen-1440w.webp 1440w, img/kitchen/kitchen-2000w.webp 2000w" sizes="(min-width: 1280px) 592px, (min-width: 1024px) 50vw, 100vw">
+                        <img src="img/kitchen/kitchen-960w.jpg" srcset="img/kitchen/kitchen-480w.jpg 480w, img/kitchen/kitchen-960w.jpg 960w, img/kitchen/kitchen-1440w.jpg 1440w, img/kitchen/kitchen-2000w.jpg 2000w" sizes="(min-width: 1280px) 592px, (min-width: 1024px) 50vw, 100vw" width="960" height="720" alt="Kitchen with custom hardwood cabinetry, center island, and schoolhouse pendant lights" loading="lazy" decoding="async" data-full-webp="img/kitchen/kitchen-2000w.webp" data-full-jpg="img/kitchen/kitchen-2000w.jpg" class="w-full h-full object-cover">
+                    </picture>
                 </div>
                 <div>
                     <span class="text-victorian-mauve font-semibold tracking-widest text-sm uppercase">The Culinary Heart</span>
@@ -337,14 +400,20 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
                 <div>
                     <div class="relative overflow-hidden rounded-lg shadow-md group h-[500px]">
-                        <img src="assets/kitchen/breakfast%20nook.jpg" alt="Breakfast nook with stained glass chandelier and garden views" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <picture>
+                            <source type="image/webp" srcset="img/kitchen/breakfast-nook-480w.webp 480w, img/kitchen/breakfast-nook-960w.webp 960w, img/kitchen/breakfast-nook-1440w.webp 1440w, img/kitchen/breakfast-nook-2000w.webp 2000w" sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw">
+                            <img src="img/kitchen/breakfast-nook-960w.jpg" srcset="img/kitchen/breakfast-nook-480w.jpg 480w, img/kitchen/breakfast-nook-960w.jpg 960w, img/kitchen/breakfast-nook-1440w.jpg 1440w, img/kitchen/breakfast-nook-2000w.jpg 2000w" sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw" width="960" height="1280" alt="Breakfast nook with stained glass chandelier and garden views" loading="lazy" decoding="async" data-full-webp="img/kitchen/breakfast-nook-2000w.webp" data-full-jpg="img/kitchen/breakfast-nook-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </picture>
                     </div>
                     <h3 class="text-2xl font-serif text-victorian-wood mt-6">The Breakfast Nook</h3>
                     <p class="text-gray-700 leading-relaxed mt-2">Bathed in natural light, this cozy nook is a serene morning retreat. A Tiffany-style stained glass chandelier casts warm, colorful light over a solid wood dining set, while original windows with decorative corner rosettes overlook the lush, private backyard.</p>
                 </div>
                 <div>
                     <div class="relative overflow-hidden rounded-lg shadow-md group h-[500px]">
-                        <img src="assets/kitchen/kitchen%20millwork.jpg" alt="Built-in hardwood hutch with glass display cabinets, brass-pull drawers, and pocket doorway" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <picture>
+                            <source type="image/webp" srcset="img/kitchen/kitchen-millwork-480w.webp 480w, img/kitchen/kitchen-millwork-960w.webp 960w, img/kitchen/kitchen-millwork-1440w.webp 1440w, img/kitchen/kitchen-millwork-2000w.webp 2000w" sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw">
+                            <img src="img/kitchen/kitchen-millwork-960w.jpg" srcset="img/kitchen/kitchen-millwork-480w.jpg 480w, img/kitchen/kitchen-millwork-960w.jpg 960w, img/kitchen/kitchen-millwork-1440w.jpg 1440w, img/kitchen/kitchen-millwork-2000w.jpg 2000w" sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw" width="960" height="1280" alt="Built-in hardwood hutch with glass display cabinets, brass-pull drawers, and pocket doorway" loading="lazy" decoding="async" data-full-webp="img/kitchen/kitchen-millwork-2000w.webp" data-full-jpg="img/kitchen/kitchen-millwork-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </picture>
                     </div>
                     <h3 class="text-2xl font-serif text-victorian-wood mt-6">Built-in Millwork &amp; Craftsmanship</h3>
                     <p class="text-gray-700 leading-relaxed mt-2">Yesteryear craftsmanship shines in the kitchen's built-in hardwood hutch, with brass-pull drawers and glass-paneled upper doors for displaying fine china. An antique cabinet with ornate cast-iron hinges stands beside it, and a pocket doorway leads straight into the formal parlor.</p>
@@ -371,7 +440,10 @@
                     </div>
                 </div>
                 <div class="relative rounded-lg overflow-hidden shadow-2xl h-[600px]">
-                    <img src="assets/bedroom/bedroom%201.png" alt="Master Bedroom" class="w-full h-full object-cover">
+                    <picture>
+                        <source type="image/webp" srcset="img/bedroom/bedroom-1-480w.webp 480w, img/bedroom/bedroom-1-960w.webp 960w, img/bedroom/bedroom-1-1440w.webp 1440w, img/bedroom/bedroom-1-2000w.webp 2000w" sizes="(min-width: 1280px) 592px, (min-width: 1024px) 50vw, 100vw">
+                        <img src="img/bedroom/bedroom-1-960w.jpg" srcset="img/bedroom/bedroom-1-480w.jpg 480w, img/bedroom/bedroom-1-960w.jpg 960w, img/bedroom/bedroom-1-1440w.jpg 1440w, img/bedroom/bedroom-1-2000w.jpg 2000w" sizes="(min-width: 1280px) 592px, (min-width: 1024px) 50vw, 100vw" width="960" height="1067" alt="Master Bedroom" loading="lazy" decoding="async" data-full-webp="img/bedroom/bedroom-1-2000w.webp" data-full-jpg="img/bedroom/bedroom-1-2000w.jpg" class="w-full h-full object-cover">
+                    </picture>
                 </div>
             </div>
         </div>
@@ -389,7 +461,10 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="bg-victorian-cream p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center gap-6">
                     <div class="w-full md:w-1/2 rounded-lg overflow-hidden">
-                        <img src="assets/bedroom/bedroom%201%20bathroom.jpg" alt="En-suite Master Bath" class="w-full h-48 object-cover">
+                        <picture>
+                            <source type="image/webp" srcset="img/bedroom/bedroom-1-bathroom-480w.webp 480w, img/bedroom/bedroom-1-bathroom-960w.webp 960w, img/bedroom/bedroom-1-bathroom-1440w.webp 1440w, img/bedroom/bedroom-1-bathroom-2000w.webp 2000w" sizes="(min-width: 1280px) 268px, (min-width: 768px) 25vw, 100vw">
+                            <img src="img/bedroom/bedroom-1-bathroom-960w.jpg" srcset="img/bedroom/bedroom-1-bathroom-480w.jpg 480w, img/bedroom/bedroom-1-bathroom-960w.jpg 960w, img/bedroom/bedroom-1-bathroom-1440w.jpg 1440w, img/bedroom/bedroom-1-bathroom-2000w.jpg 2000w" sizes="(min-width: 1280px) 268px, (min-width: 768px) 25vw, 100vw" width="960" height="640" alt="En-suite Master Bath" loading="lazy" decoding="async" data-full-webp="img/bedroom/bedroom-1-bathroom-2000w.webp" data-full-jpg="img/bedroom/bedroom-1-bathroom-2000w.jpg" class="w-full h-48 object-cover">
+                        </picture>
                     </div>
                     <div class="w-full md:w-1/2">
                         <h4 class="font-serif text-xl text-victorian-wood">En-Suite Master Bath</h4>
@@ -398,7 +473,10 @@
                 </div>
                 <div class="bg-victorian-cream p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center gap-6">
                     <div class="w-full md:w-1/2 rounded-lg overflow-hidden">
-                        <img src="assets/bedroom/bedroom%201%20bathroom%202.jpg" alt="En-suite Master Bath, second view" class="w-full h-48 object-cover">
+                        <picture>
+                            <source type="image/webp" srcset="img/bedroom/bedroom-1-bathroom-2-480w.webp 480w, img/bedroom/bedroom-1-bathroom-2-960w.webp 960w, img/bedroom/bedroom-1-bathroom-2-1440w.webp 1440w, img/bedroom/bedroom-1-bathroom-2-2000w.webp 2000w" sizes="(min-width: 1280px) 268px, (min-width: 768px) 25vw, 100vw">
+                            <img src="img/bedroom/bedroom-1-bathroom-2-960w.jpg" srcset="img/bedroom/bedroom-1-bathroom-2-480w.jpg 480w, img/bedroom/bedroom-1-bathroom-2-960w.jpg 960w, img/bedroom/bedroom-1-bathroom-2-1440w.jpg 1440w, img/bedroom/bedroom-1-bathroom-2-2000w.jpg 2000w" sizes="(min-width: 1280px) 268px, (min-width: 768px) 25vw, 100vw" width="960" height="640" alt="En-suite Master Bath, second view" loading="lazy" decoding="async" data-full-webp="img/bedroom/bedroom-1-bathroom-2-2000w.webp" data-full-jpg="img/bedroom/bedroom-1-bathroom-2-2000w.jpg" class="w-full h-48 object-cover">
+                        </picture>
                     </div>
                     <div class="w-full md:w-1/2">
                         <h4 class="font-serif text-xl text-victorian-wood">Master Bath, Second View</h4>
@@ -407,7 +485,10 @@
                 </div>
                 <div class="bg-victorian-cream p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center gap-6">
                     <div class="w-full md:w-1/2 rounded-lg overflow-hidden">
-                        <img src="assets/bathrooms/downstairs%20bathroom.jpg" alt="Downstairs Half Bath" class="w-full h-48 object-cover">
+                        <picture>
+                            <source type="image/webp" srcset="img/bathrooms/downstairs-bathroom-480w.webp 480w, img/bathrooms/downstairs-bathroom-960w.webp 960w, img/bathrooms/downstairs-bathroom-1440w.webp 1440w, img/bathrooms/downstairs-bathroom-2000w.webp 2000w" sizes="(min-width: 1280px) 268px, (min-width: 768px) 25vw, 100vw">
+                            <img src="img/bathrooms/downstairs-bathroom-960w.jpg" srcset="img/bathrooms/downstairs-bathroom-480w.jpg 480w, img/bathrooms/downstairs-bathroom-960w.jpg 960w, img/bathrooms/downstairs-bathroom-1440w.jpg 1440w, img/bathrooms/downstairs-bathroom-2000w.jpg 2000w" sizes="(min-width: 1280px) 268px, (min-width: 768px) 25vw, 100vw" width="960" height="640" alt="Downstairs Half Bath" loading="lazy" decoding="async" data-full-webp="img/bathrooms/downstairs-bathroom-2000w.webp" data-full-jpg="img/bathrooms/downstairs-bathroom-2000w.jpg" class="w-full h-48 object-cover">
+                        </picture>
                     </div>
                     <div class="w-full md:w-1/2">
                         <h4 class="font-serif text-xl text-victorian-wood">Downstairs Half Bath</h4>
@@ -416,7 +497,10 @@
                 </div>
                 <div class="bg-victorian-cream p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center gap-6">
                     <div class="w-full md:w-1/2 rounded-lg overflow-hidden">
-                        <img src="assets/bathrooms/upstairs%20bathroom.jpg" alt="Upstairs Full Bath" class="w-full h-48 object-cover">
+                        <picture>
+                            <source type="image/webp" srcset="img/bathrooms/upstairs-bathroom-480w.webp 480w, img/bathrooms/upstairs-bathroom-960w.webp 960w, img/bathrooms/upstairs-bathroom-1440w.webp 1440w, img/bathrooms/upstairs-bathroom-2000w.webp 2000w" sizes="(min-width: 1280px) 268px, (min-width: 768px) 25vw, 100vw">
+                            <img src="img/bathrooms/upstairs-bathroom-960w.jpg" srcset="img/bathrooms/upstairs-bathroom-480w.jpg 480w, img/bathrooms/upstairs-bathroom-960w.jpg 960w, img/bathrooms/upstairs-bathroom-1440w.jpg 1440w, img/bathrooms/upstairs-bathroom-2000w.jpg 2000w" sizes="(min-width: 1280px) 268px, (min-width: 768px) 25vw, 100vw" width="960" height="640" alt="Upstairs Full Bath" loading="lazy" decoding="async" data-full-webp="img/bathrooms/upstairs-bathroom-2000w.webp" data-full-jpg="img/bathrooms/upstairs-bathroom-2000w.jpg" class="w-full h-48 object-cover">
+                        </picture>
                     </div>
                     <div class="w-full md:w-1/2">
                         <h4 class="font-serif text-xl text-victorian-wood">Restored Vintage</h4>
@@ -439,7 +523,10 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-white rounded-xl shadow-xl overflow-hidden transform hover:-translate-y-2 transition duration-300">
                     <div class="h-64 overflow-hidden">
-                        <img src="assets/bedroom/bedroom%202.jpg" alt="Bedroom 2" class="w-full h-full object-cover">
+                        <picture>
+                            <source type="image/webp" srcset="img/bedroom/bedroom-2-480w.webp 480w, img/bedroom/bedroom-2-960w.webp 960w, img/bedroom/bedroom-2-1440w.webp 1440w, img/bedroom/bedroom-2-2000w.webp 2000w" sizes="(min-width: 1280px) 389px, (min-width: 768px) 33vw, 100vw">
+                            <img src="img/bedroom/bedroom-2-960w.jpg" srcset="img/bedroom/bedroom-2-480w.jpg 480w, img/bedroom/bedroom-2-960w.jpg 960w, img/bedroom/bedroom-2-1440w.jpg 1440w, img/bedroom/bedroom-2-2000w.jpg 2000w" sizes="(min-width: 1280px) 389px, (min-width: 768px) 33vw, 100vw" width="960" height="640" alt="Bedroom 2" loading="lazy" decoding="async" data-full-webp="img/bedroom/bedroom-2-2000w.webp" data-full-jpg="img/bedroom/bedroom-2-2000w.jpg" class="w-full h-full object-cover">
+                        </picture>
                     </div>
                     <div class="p-6 text-center">
                         <h3 class="text-xl font-serif text-victorian-wood">Guest Bedroom</h3>
@@ -448,7 +535,10 @@
                 </div>
                 <div class="bg-white rounded-xl shadow-xl overflow-hidden transform hover:-translate-y-2 transition duration-300">
                     <div class="h-64 overflow-hidden">
-                        <img src="assets/bedroom/bedroom%203.jpg" alt="Bedroom 3" class="w-full h-full object-cover">
+                        <picture>
+                            <source type="image/webp" srcset="img/bedroom/bedroom-3-480w.webp 480w, img/bedroom/bedroom-3-960w.webp 960w, img/bedroom/bedroom-3-1440w.webp 1440w, img/bedroom/bedroom-3-2000w.webp 2000w" sizes="(min-width: 1280px) 389px, (min-width: 768px) 33vw, 100vw">
+                            <img src="img/bedroom/bedroom-3-960w.jpg" srcset="img/bedroom/bedroom-3-480w.jpg 480w, img/bedroom/bedroom-3-960w.jpg 960w, img/bedroom/bedroom-3-1440w.jpg 1440w, img/bedroom/bedroom-3-2000w.jpg 2000w" sizes="(min-width: 1280px) 389px, (min-width: 768px) 33vw, 100vw" width="960" height="640" alt="Bedroom 3" loading="lazy" decoding="async" data-full-webp="img/bedroom/bedroom-3-2000w.webp" data-full-jpg="img/bedroom/bedroom-3-2000w.jpg" class="w-full h-full object-cover">
+                        </picture>
                     </div>
                     <div class="p-6 text-center">
                         <h3 class="text-xl font-serif text-victorian-wood">Third Bedroom</h3>
@@ -457,7 +547,10 @@
                 </div>
                 <div class="bg-white rounded-xl shadow-xl overflow-hidden transform hover:-translate-y-2 transition duration-300">
                     <div class="h-64 overflow-hidden">
-                        <img src="assets/upstairs%20hallway/upstairs%20hallway.jpg" alt="Upstairs Hallway" class="w-full h-full object-cover">
+                        <picture>
+                            <source type="image/webp" srcset="img/upstairs-hallway/upstairs-hallway-480w.webp 480w, img/upstairs-hallway/upstairs-hallway-960w.webp 960w, img/upstairs-hallway/upstairs-hallway-1440w.webp 1440w, img/upstairs-hallway/upstairs-hallway-2000w.webp 2000w" sizes="(min-width: 1280px) 389px, (min-width: 768px) 33vw, 100vw">
+                            <img src="img/upstairs-hallway/upstairs-hallway-960w.jpg" srcset="img/upstairs-hallway/upstairs-hallway-480w.jpg 480w, img/upstairs-hallway/upstairs-hallway-960w.jpg 960w, img/upstairs-hallway/upstairs-hallway-1440w.jpg 1440w, img/upstairs-hallway/upstairs-hallway-2000w.jpg 2000w" sizes="(min-width: 1280px) 389px, (min-width: 768px) 33vw, 100vw" width="960" height="640" alt="Upstairs Hallway" loading="lazy" decoding="async" data-full-webp="img/upstairs-hallway/upstairs-hallway-2000w.webp" data-full-jpg="img/upstairs-hallway/upstairs-hallway-2000w.jpg" class="w-full h-full object-cover">
+                        </picture>
                     </div>
                     <div class="p-6 text-center">
                         <h3 class="text-xl font-serif text-victorian-wood">Upstairs Hallway</h3>
@@ -469,13 +562,22 @@
             <!-- Additional Hallway & Staircase Images -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
                 <div class="relative overflow-hidden rounded-lg shadow-xl group h-[400px]">
-                    <img src="assets/upstairs%20hallway/upstairs%20hallway%202.jpg" alt="Upstairs Hallway 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <picture>
+                        <source type="image/webp" srcset="img/upstairs-hallway/upstairs-hallway-2-480w.webp 480w, img/upstairs-hallway/upstairs-hallway-2-960w.webp 960w, img/upstairs-hallway/upstairs-hallway-2-1440w.webp 1440w, img/upstairs-hallway/upstairs-hallway-2-2000w.webp 2000w" sizes="(min-width: 1280px) 389px, (min-width: 768px) 33vw, 100vw">
+                        <img src="img/upstairs-hallway/upstairs-hallway-2-960w.jpg" srcset="img/upstairs-hallway/upstairs-hallway-2-480w.jpg 480w, img/upstairs-hallway/upstairs-hallway-2-960w.jpg 960w, img/upstairs-hallway/upstairs-hallway-2-1440w.jpg 1440w, img/upstairs-hallway/upstairs-hallway-2-2000w.jpg 2000w" sizes="(min-width: 1280px) 389px, (min-width: 768px) 33vw, 100vw" width="960" height="640" alt="Upstairs Hallway 2" loading="lazy" decoding="async" data-full-webp="img/upstairs-hallway/upstairs-hallway-2-2000w.webp" data-full-jpg="img/upstairs-hallway/upstairs-hallway-2-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </picture>
                 </div>
                 <div class="relative overflow-hidden rounded-lg shadow-xl group h-[400px]">
-                    <img src="assets/upstairs%20hallway/upstairs%20hallway%203.jpg" alt="Upstairs Hallway 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <picture>
+                        <source type="image/webp" srcset="img/upstairs-hallway/upstairs-hallway-3-480w.webp 480w, img/upstairs-hallway/upstairs-hallway-3-960w.webp 960w, img/upstairs-hallway/upstairs-hallway-3-1440w.webp 1440w, img/upstairs-hallway/upstairs-hallway-3-2000w.webp 2000w" sizes="(min-width: 1280px) 389px, (min-width: 768px) 33vw, 100vw">
+                        <img src="img/upstairs-hallway/upstairs-hallway-3-960w.jpg" srcset="img/upstairs-hallway/upstairs-hallway-3-480w.jpg 480w, img/upstairs-hallway/upstairs-hallway-3-960w.jpg 960w, img/upstairs-hallway/upstairs-hallway-3-1440w.jpg 1440w, img/upstairs-hallway/upstairs-hallway-3-2000w.jpg 2000w" sizes="(min-width: 1280px) 389px, (min-width: 768px) 33vw, 100vw" width="960" height="640" alt="Upstairs Hallway 3" loading="lazy" decoding="async" data-full-webp="img/upstairs-hallway/upstairs-hallway-3-2000w.webp" data-full-jpg="img/upstairs-hallway/upstairs-hallway-3-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </picture>
                 </div>
                 <div class="relative overflow-hidden rounded-lg shadow-xl group h-[400px]">
-                    <img src="assets/staircase/f0aJSTuc.jpg" alt="Staircase Detail" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <picture>
+                        <source type="image/webp" srcset="img/staircase/f0ajstuc-480w.webp 480w, img/staircase/f0ajstuc-960w.webp 960w, img/staircase/f0ajstuc-1440w.webp 1440w, img/staircase/f0ajstuc-2000w.webp 2000w" sizes="(min-width: 1280px) 389px, (min-width: 768px) 33vw, 100vw">
+                        <img src="img/staircase/f0ajstuc-960w.jpg" srcset="img/staircase/f0ajstuc-480w.jpg 480w, img/staircase/f0ajstuc-960w.jpg 960w, img/staircase/f0ajstuc-1440w.jpg 1440w, img/staircase/f0ajstuc-2000w.jpg 2000w" sizes="(min-width: 1280px) 389px, (min-width: 768px) 33vw, 100vw" width="960" height="640" alt="Staircase Detail" loading="lazy" decoding="async" data-full-webp="img/staircase/f0ajstuc-2000w.webp" data-full-jpg="img/staircase/f0ajstuc-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </picture>
                 </div>
             </div>
         </div>
@@ -492,19 +594,34 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="relative overflow-hidden rounded-lg shadow-md group h-[300px]">
-                    <img src="assets/dining%20room/dining%20room%203.jpg" alt="Dining Room 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <picture>
+                        <source type="image/webp" srcset="img/dining-room/dining-room-3-480w.webp 480w, img/dining-room/dining-room-3-960w.webp 960w, img/dining-room/dining-room-3-1440w.webp 1440w, img/dining-room/dining-room-3-2000w.webp 2000w" sizes="(min-width: 1280px) 395px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw">
+                        <img src="img/dining-room/dining-room-3-960w.jpg" srcset="img/dining-room/dining-room-3-480w.jpg 480w, img/dining-room/dining-room-3-960w.jpg 960w, img/dining-room/dining-room-3-1440w.jpg 1440w, img/dining-room/dining-room-3-2000w.jpg 2000w" sizes="(min-width: 1280px) 395px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="960" height="839" alt="Dining Room 3" loading="lazy" decoding="async" data-full-webp="img/dining-room/dining-room-3-2000w.webp" data-full-jpg="img/dining-room/dining-room-3-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </picture>
                 </div>
                 <div class="relative overflow-hidden rounded-lg shadow-md group h-[300px]">
-                    <img src="assets/dining%20room/dining%20room%204.jpg" alt="Dining Room 4" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <picture>
+                        <source type="image/webp" srcset="img/dining-room/dining-room-4-480w.webp 480w, img/dining-room/dining-room-4-960w.webp 960w, img/dining-room/dining-room-4-1440w.webp 1440w, img/dining-room/dining-room-4-2000w.webp 2000w" sizes="(min-width: 1280px) 395px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw">
+                        <img src="img/dining-room/dining-room-4-960w.jpg" srcset="img/dining-room/dining-room-4-480w.jpg 480w, img/dining-room/dining-room-4-960w.jpg 960w, img/dining-room/dining-room-4-1440w.jpg 1440w, img/dining-room/dining-room-4-2000w.jpg 2000w" sizes="(min-width: 1280px) 395px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="960" height="640" alt="Dining Room 4" loading="lazy" decoding="async" data-full-webp="img/dining-room/dining-room-4-2000w.webp" data-full-jpg="img/dining-room/dining-room-4-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </picture>
                 </div>
                 <div class="relative overflow-hidden rounded-lg shadow-md group h-[300px]">
-                    <img src="assets/dining%20room/dining%20room%205.jpg" alt="Dining Room 5" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <picture>
+                        <source type="image/webp" srcset="img/dining-room/dining-room-5-480w.webp 480w, img/dining-room/dining-room-5-960w.webp 960w, img/dining-room/dining-room-5-1440w.webp 1440w, img/dining-room/dining-room-5-2000w.webp 2000w" sizes="(min-width: 1280px) 395px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw">
+                        <img src="img/dining-room/dining-room-5-960w.jpg" srcset="img/dining-room/dining-room-5-480w.jpg 480w, img/dining-room/dining-room-5-960w.jpg 960w, img/dining-room/dining-room-5-1440w.jpg 1440w, img/dining-room/dining-room-5-2000w.jpg 2000w" sizes="(min-width: 1280px) 395px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="960" height="640" alt="Dining Room 5" loading="lazy" decoding="async" data-full-webp="img/dining-room/dining-room-5-2000w.webp" data-full-jpg="img/dining-room/dining-room-5-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </picture>
                 </div>
                 <div class="relative overflow-hidden rounded-lg shadow-md group h-[300px] lg:col-span-2">
-                    <img src="assets/dining%20room/dining%20room%206.jpg" alt="Dining Room Wide" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <picture>
+                        <source type="image/webp" srcset="img/dining-room/dining-room-6-480w.webp 480w, img/dining-room/dining-room-6-960w.webp 960w, img/dining-room/dining-room-6-1440w.webp 1440w, img/dining-room/dining-room-6-2000w.webp 2000w" sizes="(min-width: 1280px) 805px, (min-width: 1024px) 66vw, (min-width: 768px) 50vw, 100vw">
+                        <img src="img/dining-room/dining-room-6-960w.jpg" srcset="img/dining-room/dining-room-6-480w.jpg 480w, img/dining-room/dining-room-6-960w.jpg 960w, img/dining-room/dining-room-6-1440w.jpg 1440w, img/dining-room/dining-room-6-2000w.jpg 2000w" sizes="(min-width: 1280px) 805px, (min-width: 1024px) 66vw, (min-width: 768px) 50vw, 100vw" width="960" height="640" alt="Dining Room Wide" loading="lazy" decoding="async" data-full-webp="img/dining-room/dining-room-6-2000w.webp" data-full-jpg="img/dining-room/dining-room-6-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </picture>
                 </div>
                 <div class="relative overflow-hidden rounded-lg shadow-md group h-[300px]">
-                    <img src="assets/dining%20room/dining%20room%202.jpg" alt="Dining Area" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <picture>
+                        <source type="image/webp" srcset="img/dining-room/dining-room-2-480w.webp 480w, img/dining-room/dining-room-2-960w.webp 960w, img/dining-room/dining-room-2-1440w.webp 1440w, img/dining-room/dining-room-2-2000w.webp 2000w" sizes="(min-width: 1280px) 395px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw">
+                        <img src="img/dining-room/dining-room-2-960w.jpg" srcset="img/dining-room/dining-room-2-480w.jpg 480w, img/dining-room/dining-room-2-960w.jpg 960w, img/dining-room/dining-room-2-1440w.jpg 1440w, img/dining-room/dining-room-2-2000w.jpg 2000w" sizes="(min-width: 1280px) 395px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="960" height="640" alt="Dining Area" loading="lazy" decoding="async" data-full-webp="img/dining-room/dining-room-2-2000w.webp" data-full-jpg="img/dining-room/dining-room-2-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </picture>
                 </div>
             </div>
         </div>
@@ -547,7 +664,10 @@
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="relative rounded-lg overflow-hidden shadow-2xl h-[500px]">
-                    <img src="assets/living%20room/fireplace.jpg" alt="Period antiques in the parlor" class="w-full h-full object-cover">
+                    <picture>
+                        <source type="image/webp" srcset="img/living-room/fireplace-480w.webp 480w, img/living-room/fireplace-960w.webp 960w, img/living-room/fireplace-1440w.webp 1440w, img/living-room/fireplace-2000w.webp 2000w" sizes="(min-width: 1280px) 592px, (min-width: 1024px) 50vw, 100vw">
+                        <img src="img/living-room/fireplace-960w.jpg" srcset="img/living-room/fireplace-480w.jpg 480w, img/living-room/fireplace-960w.jpg 960w, img/living-room/fireplace-1440w.jpg 1440w, img/living-room/fireplace-2000w.jpg 2000w" sizes="(min-width: 1280px) 592px, (min-width: 1024px) 50vw, 100vw" width="960" height="1035" alt="Period antiques in the parlor" loading="lazy" decoding="async" data-full-webp="img/living-room/fireplace-2000w.webp" data-full-jpg="img/living-room/fireplace-2000w.jpg" class="w-full h-full object-cover">
+                    </picture>
                 </div>
                 <div>
                     <span class="text-victorian-mauve font-semibold tracking-widest text-sm uppercase">Sold With the Home</span>
@@ -567,15 +687,24 @@
             <!-- Collection Gallery Strip -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
                 <div class="relative overflow-hidden rounded-lg shadow-md group h-[260px]">
-                    <img src="assets/living%20room/living%20room.jpg" alt="Period furnishings in the parlor" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <picture>
+                        <source type="image/webp" srcset="img/living-room/living-room-480w.webp 480w, img/living-room/living-room-960w.webp 960w, img/living-room/living-room-1440w.webp 1440w, img/living-room/living-room-2000w.webp 2000w" sizes="(min-width: 1280px) 395px, (min-width: 768px) 33vw, 100vw">
+                        <img src="img/living-room/living-room-960w.jpg" srcset="img/living-room/living-room-480w.jpg 480w, img/living-room/living-room-960w.jpg 960w, img/living-room/living-room-1440w.jpg 1440w, img/living-room/living-room-2000w.jpg 2000w" sizes="(min-width: 1280px) 395px, (min-width: 768px) 33vw, 100vw" width="960" height="640" alt="Period furnishings in the parlor" loading="lazy" decoding="async" data-full-webp="img/living-room/living-room-2000w.webp" data-full-jpg="img/living-room/living-room-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </picture>
                     <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">The Parlor</div>
                 </div>
                 <div class="relative overflow-hidden rounded-lg shadow-md group h-[260px]">
-                    <img src="assets/dining%20room/dining%20room%201.jpg" alt="Antique dining furnishings" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <picture>
+                        <source type="image/webp" srcset="img/dining-room/dining-room-1-480w.webp 480w, img/dining-room/dining-room-1-960w.webp 960w, img/dining-room/dining-room-1-1440w.webp 1440w, img/dining-room/dining-room-1-2000w.webp 2000w" sizes="(min-width: 1280px) 395px, (min-width: 768px) 33vw, 100vw">
+                        <img src="img/dining-room/dining-room-1-960w.jpg" srcset="img/dining-room/dining-room-1-480w.jpg 480w, img/dining-room/dining-room-1-960w.jpg 960w, img/dining-room/dining-room-1-1440w.jpg 1440w, img/dining-room/dining-room-1-2000w.jpg 2000w" sizes="(min-width: 1280px) 395px, (min-width: 768px) 33vw, 100vw" width="960" height="640" alt="Antique dining furnishings" loading="lazy" decoding="async" data-full-webp="img/dining-room/dining-room-1-2000w.webp" data-full-jpg="img/dining-room/dining-room-1-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </picture>
                     <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">The Dining Room</div>
                 </div>
                 <div class="relative overflow-hidden rounded-lg shadow-md group h-[260px]">
-                    <img src="assets/dining%20room/dining%20room%206.jpg" alt="Collection details" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <picture>
+                        <source type="image/webp" srcset="img/dining-room/dining-room-6-480w.webp 480w, img/dining-room/dining-room-6-960w.webp 960w, img/dining-room/dining-room-6-1440w.webp 1440w, img/dining-room/dining-room-6-2000w.webp 2000w" sizes="(min-width: 1280px) 395px, (min-width: 768px) 33vw, 100vw">
+                        <img src="img/dining-room/dining-room-6-960w.jpg" srcset="img/dining-room/dining-room-6-480w.jpg 480w, img/dining-room/dining-room-6-960w.jpg 960w, img/dining-room/dining-room-6-1440w.jpg 1440w, img/dining-room/dining-room-6-2000w.jpg 2000w" sizes="(min-width: 1280px) 395px, (min-width: 768px) 33vw, 100vw" width="960" height="640" alt="Collection details" loading="lazy" decoding="async" data-full-webp="img/dining-room/dining-room-6-2000w.webp" data-full-jpg="img/dining-room/dining-room-6-2000w.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </picture>
                     <div class="absolute bottom-0 w-full bg-black/50 p-3 text-white text-center text-sm">Period Details</div>
                 </div>
             </div>
