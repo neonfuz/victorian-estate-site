@@ -30,5 +30,4 @@ Single-page static marketing site advertising the **Robert H. Butter House** (30
 
 ## Known Placeholders / TODOs for the Owner
 
-- Phone `(555) 555-5555` (`tel:+15555555555`) and email `agent@example.com` in the Contact section are **placeholders** the owner will replace manually.
 - No price or MLS details are shown — intentionally generic per the owner's request.
