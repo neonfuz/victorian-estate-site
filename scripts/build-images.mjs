@@ -8,16 +8,24 @@
  * native width when it is smaller than the largest step. Also writes
  * img/manifest.json mapping each source file to its variants and dimensions.
  *
- * Run with: npm run build
+ * Builds are fingerprint-guarded: a sha256 over this script's source, the
+ * installed sharp version, and every file under assets/ is stored in
+ * img/.build-hash, and repeat builds with no changes exit without
+ * rebuilding. Run with: npm run build        (add -- --force to rebuild anyway)
  */
 
+import crypto from 'node:crypto';
+import { createReadStream } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 
 const SRC_DIR = 'assets';
 const OUT_DIR = 'img';
+const HASH_FILE = path.join(OUT_DIR, '.build-hash');
 const WIDTHS = [480, 960, 1440 /* px */, 2000];
+const FORCE = process.argv.includes('--force');
 
 function slugifySegment(seg) {
     return seg
@@ -33,19 +41,55 @@ function slugifyRelPath(rel) {
     return parts.join('/');
 }
 
-async function findImages(dir) {
+async function walkFiles(dir) {
     const entries = await fs.readdir(dir, { withFileTypes: true });
     const files = [];
     for (const entry of entries) {
         if (entry.name.startsWith('.')) continue;
         const full = path.join(dir, entry.name);
         if (entry.isDirectory()) {
-            files.push(...await findImages(full));
-        } else if (/\.(jpe?g|png)$/i.test(entry.name)) {
+            files.push(...await walkFiles(full));
+        } else {
             files.push(full);
         }
     }
     return files.sort();
+}
+
+async function findImages(dir) {
+    return (await walkFiles(dir)).filter(f => /\.(jpe?g|png)$/i.test(f));
+}
+
+/**
+ * Fingerprint of everything that determines img/'s contents: this script's
+ * own source, the installed sharp version, and every file under assets/
+ * (relative path + bytes). Content-only — mtimes are ignored so fresh git
+ * clones on Netlify don't spuriously invalidate the restored cache.
+ */
+async function computeAssetsHash() {
+    const hash = crypto.createHash('sha256');
+    hash.update(await fs.readFile(fileURLToPath(import.meta.url)));
+    hash.update(JSON.parse(await fs.readFile('node_modules/sharp/package.json', 'utf8')).version);
+    for (const file of await walkFiles(SRC_DIR)) {
+        hash.update(path.relative(SRC_DIR, file).split(path.sep).join('/') + '\0');
+        await new Promise((resolve, reject) => {
+            createReadStream(file)
+                .on('data', chunk => hash.update(chunk))
+                .on('end', resolve)
+                .on('error', reject);
+        });
+        hash.update('\0');
+    }
+    return hash.digest('hex');
+}
+
+async function hasValidCache(fingerprint) {
+    try {
+        return (await fs.readFile(HASH_FILE, 'utf8')).trim() === fingerprint
+            && (await fs.stat(path.join(OUT_DIR, 'manifest.json'))).isFile();
+    } catch {
+        return false;
+    }
 }
 
 function variantWidths(srcWidth) {
@@ -95,6 +139,13 @@ async function processImage(file) {
 
 async function main() {
     const started = Date.now();
+    const fingerprint = await computeAssetsHash();
+
+    if (!FORCE && await hasValidCache(fingerprint)) {
+        console.log('assets unchanged — keeping existing img/ (use --force to rebuild)');
+        return;
+    }
+
     await fs.rm(OUT_DIR, { recursive: true, force: true });
 
     const files = await findImages(SRC_DIR);
@@ -125,6 +176,8 @@ async function main() {
     for (const f of outputBytes) {
         outBytes += (await fs.stat(path.join(OUT_DIR, f))).size;
     }
+
+    await fs.writeFile(HASH_FILE, fingerprint + '\n');
 
     const fmt = n => (n / 1024 / 1024).toFixed(1) + ' MB';
     console.log(`\n${files.length} images -> ${outputBytes.length} variants in ${((Date.now() - started) / 1000).toFixed(1)}s`);
