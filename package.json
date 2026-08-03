@@ -1,0 +1,14 @@
+{
+  "name": "victorian-butter-house",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-images.mjs"
+  },
+  "engines": {
+    "node": ">=18.17"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.3"
+  }
+}
